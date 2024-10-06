@@ -1,16 +1,23 @@
 import { Cliente } from "./Cliente.js"
 import { Conta } from "./Conta.js";
+import { ContaCorrente } from "./ContaCorrente.js";
+import { ContaPoupanca } from "./ContaPoupanca.js";
+import { ContaSalario } from "./ContaSalario.js";
 
 const cliente1 = new Cliente("Ricardo", 11122233309);
 
-const contaCorrenteRicardo = new Conta(0, cliente1, 1001);
-
+//Conta CORRENTE
+const contaCorrenteRicardo = new ContaCorrente(cliente1.nome + ' Corrente', 1001);
 contaCorrenteRicardo.depositar(500);
 contaCorrenteRicardo.sacar(100);
 
-const contaPoupanca = new Conta(50, cliente1, 1001)
+//Conta SALARIO
+const contaSalario = new ContaSalario(cliente1.nome + ' Salario', 1001);
+contaSalario.depositar(100);
+contaSalario.sacar(10);
+console.log(contaSalario.getContaInfo())
 
-console.log(contaPoupanca.saldo);
-console.log(contaPoupanca.cliente);
-console.log(contaPoupanca.cliente.cpf);
-console.log(contaPoupanca.agencia);
+//Conta POUPANÇA
+const contaPoupanca = new ContaPoupanca(50, cliente1.nome + ' Poupança', 1001)
+
+// const conta = new Conta(cliente1, 1001); // Validação de que não pode criar uma Conta Diretamente
