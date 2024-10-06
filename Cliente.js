@@ -9,10 +9,4 @@ export class Cliente{
     get cpf(){
         return this.#cpf;
     }
-
-    set cpf(novoCpf) {
-        if(this.#cpf != novoCpf) {
-            this.#cpf = novoCpf
-        }
-    }
 }

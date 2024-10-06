@@ -1,52 +1,16 @@
-import { Cliente } from "./Cliente.js";
+import { Conta } from "./Conta.js";
 
-export class ContaCorrente{
-    static numeroDeContas = 0;
-    #agencia;
-    #cliente;
-    #saldo = 0;
+export class ContaCorrente extends Conta{
     
-    constructor(agencia, cliente){
-        this.#agencia = agencia;
-        this.#cliente = cliente;
-        this.#saldo = cliente; 
+    static numeroDeContas = 0;
+
+    constructor(cliente, agencia){
+        super(0, cliente, agencia); // O "Super" serve para chamar funções/defirnir variaveis do Pai. 
         ContaCorrente.numeroDeContas += 1;
     }
 
-    get cliente(){
-        return this.#cliente;
-    }
-
-    get saldo(){
-        return this.#saldo;
-    }
-    
-    set cliente(novoValor){
-        if(novoValor instanceof Cliente){
-            this.#cliente = novoValor;
-        }
-    }
-
-
-    sacar(valor){
-        if(this.#saldo >= valor){
-            this.#saldo -= valor;
-            return valor;
-        }
-    }
-
-    depositar(valor){
-        if(valor <= 0)
-        {
-            return;
-        } 
-        this.#saldo += valor;           
-    }
-
-    tranferir(valor, conta){
-        
-        const valorSacado = this.sacar(valor);
-        conta.depositar(valorSacado);
-        
+    sacar(valor) {
+        let taxa = 1.1;
+        return super._sacar(valor, taxa); // Poderia ser "this._sacar" por conta que ContaCorrente Extende o Conta. A intaxe "super." me parece mais intuitiva
     }
 }
