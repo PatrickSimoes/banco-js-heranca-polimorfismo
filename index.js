@@ -1,23 +1,13 @@
-import { Cliente } from "./Cliente.js"
-import { Conta } from "./Conta.js";
-import { ContaCorrente } from "./ContaCorrente.js";
-import { ContaPoupanca } from "./ContaPoupanca.js";
-import { ContaSalario } from "./ContaSalario.js";
+import { Gerente } from "./Funcionario/Gerente.js";
+import { Diretor } from "./Funcionario/Diretor.js";
+import { SistemaAutenticacao } from "./SistemaAutenticacao.js";
 
-const cliente1 = new Cliente("Ricardo", 11122233309);
+const gerente = new Gerente('Rodrigo', 10000, 87954621321);
+const diretor = new Diretor('Marcos', 5000, 45654621332)
+diretor.cadastrarSenha(123123123);
 
-//Conta CORRENTE
-const contaCorrenteRicardo = new ContaCorrente(cliente1.nome + ' Corrente', 1001);
-contaCorrenteRicardo.depositar(500);
-contaCorrenteRicardo.sacar(100);
+const estaLogado =  SistemaAutenticacao.login(diretor, "123123123");
 
-//Conta SALARIO
-const contaSalario = new ContaSalario(cliente1.nome + ' Salario', 1001);
-contaSalario.depositar(100);
-contaSalario.sacar(10);
-console.log(contaSalario.getContaInfo())
-
-//Conta POUPANÇA
-const contaPoupanca = new ContaPoupanca(50, cliente1.nome + ' Poupança', 1001)
-
-// const conta = new Conta(cliente1, 1001); // Validação de que não pode criar uma Conta Diretamente
+console.log(estaLogado)
+// console.log(gerente.getAllData())
+// console.log(diretor.getAllData())
